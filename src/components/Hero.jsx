@@ -79,7 +79,7 @@ const Hero = () => {
                 >
                     <div className="flex items-center gap-2">
                         <Calendar size={18} className="text-blue-500" />
-                        <span> 06,07,08 February 2026</span>
+                        <span> 06-08 February 2026</span>
                     </div>
                     <div className="flex items-center gap-2">
                         <MapPin size={18} className="text-purple-500" />
