@@ -41,7 +41,7 @@ const About = () => {
                             Crescita 3.0 is the flagship technical fest of IEEE SB LBSCEK, bringing together students and technology enthusiasts from across Kerala. As the largest technical event ever hosted at LBS College of Engineering, Kasaragod, it serves as a premier platform for innovation and learning.
                         </p>
                         <p>
-                            Spanning three days on February 06,07 and 08 ,2025, the event blends technical excellence with entertainment. It is more than just an event—it is a celebration of technology, talent, and collaboration.
+                            Spanning three days on February 06,07 and 08 ,2026, the event blends technical excellence with entertainment. It is more than just an event—it is a celebration of technology, talent, and collaboration.
                         </p>
                     </div>
                 </motion.div>

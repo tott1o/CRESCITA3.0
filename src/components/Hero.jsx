@@ -83,7 +83,7 @@ const Hero = () => {
                     </div>
                     <div className="flex items-center gap-2">
                         <MapPin size={18} className="text-purple-500" />
-                        <span>LBS collage of engineering</span>
+                        <span>LBS college of engineering</span>
                     </div>
                 </motion.div>
             </div>
