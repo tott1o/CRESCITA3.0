@@ -1,5 +1,7 @@
 import React from 'react';
 import { Facebook, Instagram, Linkedin, Twitter, Heart, Youtube } from 'lucide-react';
+import logo from '../assets/logos/1.png';
+import logo2 from '../assets/logos/3.png';
 
 const Footer = () => {
     return (
@@ -7,7 +9,7 @@ const Footer = () => {
             <div className="max-w-7xl mx-auto px-6">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                     <div className="col-span-1 md:col-span-2">
-                        <h2 className="text-2xl font-bold mb-4">CRESCITA 3.0</h2>
+                        <img src={logo} alt="CRESCITA Logo" className="h-8 md:h-10" />
                         <p className="text-slate-400 max-w-sm mb-6">
                             Empowering the next generation of innovators through technical excellence and creative competition.
                         </p>
@@ -49,7 +51,7 @@ const Footer = () => {
                 <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500">
                     <p>© 2026 Crescita. All rights reserved.</p>
                     <p className="flex items-center gap-1">
-                        IEEE Student Branch LBSCEK
+                        <img src={logo2} alt="CRESCITA Logo" className="h-8 md:h-10" />
                     </p>
                 </div>
             </div>

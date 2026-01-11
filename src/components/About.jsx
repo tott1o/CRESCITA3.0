@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Code, Cpu, Globe, Users } from 'lucide-react';
+import logo from '../assets/logos/1.png';
 
 const About = () => {
     const features = [

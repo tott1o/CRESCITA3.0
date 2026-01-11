@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import logo from '../assets/logos/1.png';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -32,11 +33,8 @@ const Navbar = () => {
             <div className="max-w-7xl mx-auto px-6">
                 <div className="flex items-center justify-between h-16 md:h-20">
                     {/* Logo */}
-                    <a href="#" className="text-2xl font-bold tracking-tighter">
-                        <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
-                            CRESCITA
-                        </span>
-                        <span className="ml-1 text-white">3.0</span>
+                    <a href="#" className="flex items-center gap-2">
+                        <img src={logo} alt="CRESCITA Logo" className="h-8 md:h-10" />
                     </a>
 
                     {/* Desktop Links */}
