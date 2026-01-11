@@ -45,6 +45,9 @@ const MediaPreview = () => {
                     <h2 className="text-2xl md:text-5xl font-bold tracking-tight uppercase">
                         Visual <span className="text-blue-500">Announcements</span>
                     </h2>
+                    <p className="mt-4 text-slate-400 text-base md:text-lg max-w-2xl mx-auto">
+                        Stay updated with our latest event posters and announcements. Explore the highlights and key information at a glance.
+                    </p>
                 </motion.div>
 
                 <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
@@ -81,7 +84,7 @@ const MediaPreview = () => {
                 <div className="mt-12 flex justify-center">
                     <button
                         onClick={() => window.open('https://www.instagram.com/ieeesblbscek/', '_blank')}
-                        className="group flex items-center gap-2 px-8 py-4 bg-white text-slate-950 rounded-full font-bold hover:bg-blue-50 transition-all shadow-xl shadow-white/5"
+                        className="w-full sm:w-auto group px-6 py-3 md:px-8 md:py-4 bg-white text-slate-950 rounded-lg font-bold text-base md:text-lg hover:bg-blue-50 transition-all flex items-center justify-center gap-2"
                     >
                         View Full Gallery
                         <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
