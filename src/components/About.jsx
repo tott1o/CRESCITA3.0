@@ -35,10 +35,10 @@ const About = () => {
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold mb-6">About <span className="text-blue-500">Crescita 2.0</span></h2>
+                    <h2 className="text-4xl md:text-5xl font-bold mb-6">About <span className="text-blue-500">Crescita 3.0</span></h2>
                     <div className="text-slate-400 max-w-3xl mx-auto text-lg leading-relaxed space-y-4">
                         <p>
-                            Crescita 2.0 is the flagship technical fest of IEEE SB LBSCEK, bringing together students and technology enthusiasts from across Kerala. As the largest technical event ever hosted at LBS College of Engineering, Kasaragod, it serves as a premier platform for innovation and learning.
+                            Crescita 3.0 is the flagship technical fest of IEEE SB LBSCEK, bringing together students and technology enthusiasts from across Kerala. As the largest technical event ever hosted at LBS College of Engineering, Kasaragod, it serves as a premier platform for innovation and learning.
                         </p>
                         <p>
                             Spanning three days on January 24, 25, and 26, 2025, the event blends technical excellence with entertainment. It is more than just an event—it is a celebration of technology, talent, and collaboration.
