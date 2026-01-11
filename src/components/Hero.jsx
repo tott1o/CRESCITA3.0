@@ -62,11 +62,11 @@ const Hero = () => {
                     transition={{ duration: 0.8, delay: 0.6 }}
                     className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 mt-6 md:mt-8 w-full px-4"
                 >
-                    <button className="w-full sm:w-auto group px-6 py-3 md:px-8 md:py-4 bg-white text-slate-950 rounded-lg font-bold text-base md:text-lg hover:bg-blue-50 transition-all flex items-center justify-center gap-2">
+                    <button onClick={() => window.open('https://bit.ly/CRESCITAEarlyBird', '_blank')} className="w-full sm:w-auto group px-6 py-3 md:px-8 md:py-4 bg-white text-slate-950 rounded-lg font-bold text-base md:text-lg hover:bg-blue-50 transition-all flex items-center justify-center gap-2">
                         Register Now
                         <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                     </button>
-                    <button className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-white/5 border border-white/10 text-white rounded-lg font-bold text-base md:text-lg hover:bg-white/10 transition-all">
+                    <button onClick={() => document.getElementById('events')?.scrollIntoView({ behavior: 'smooth' })} className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-white/5 border border-white/10 text-white rounded-lg font-bold text-base md:text-lg hover:bg-white/10 transition-all">
                         Explore Events
                     </button>
                 </motion.div>
