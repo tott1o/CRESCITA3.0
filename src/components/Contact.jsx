@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, MessageCircle, Phone, User } from 'lucide-react';
+import { MapPin, MessageCircle, Phone, User, Mail } from 'lucide-react';
 
 const Contact = () => {
     const contacts = [
@@ -8,12 +8,14 @@ const Contact = () => {
             role: "Chair, IEEE SB LBSCEK",
             name: "Akshay M R",
             phone: "+91 95443 18120",
+            email: "akshaymr@ieee.org",
             color: "blue"
         },
         {
-            role: "Student Co-ordinator",
+            role: "Secretary ",
             name: "Hridyaprabha M",
-            phone: "+91 7012229415",
+            phone: "+91 9061076939",
+            email: "archanadas2102@gmail.com",
             color: "purple"
         },
 
@@ -113,17 +115,27 @@ const Contact = () => {
                                 <div className={`p-2 md:p-3 bg-${contact.color}-500/20 rounded-lg md:rounded-full text-${contact.color}-400 group-hover:scale-110 transition-transform shrink-0`}>
                                     <User size={16} className="md:w-6 md:h-6" />
                                 </div>
-                                <div className="flex-1 min-w-0">
-                                    <p className={`text-[10px] md:text-xs font-bold uppercase tracking-wider text-${contact.color}-400 mb-0.5 md:mb-1 truncate`}>
+                                <div className="flex-1 min-w-0 w-full">
+                                    <p className={`text-[10px] md:text-xs font-bold uppercase tracking-wider text-${contact.color}-400 mb-0.5 md:mb-1 whitespace-normal break-words`}>
                                         {contact.role}
                                     </p>
-                                    <h4 className="text-sm md:text-lg font-bold text-white mb-0.5 md:mb-1 truncate">{contact.name}</h4>
-                                    <a
-                                        href={`tel:${contact.phone.replace(/\s+/g, '')}`}
-                                        className="inline-flex items-center gap-1 md:gap-2 text-slate-400 hover:text-white transition-colors text-[10px] md:text-sm"
-                                    >
-                                        <Phone size={12} className="md:w-3.5 md:h-3.5" /> {contact.phone}
-                                    </a>
+                                    <h4 className="text-sm md:text-lg font-bold text-white mb-0.5 md:mb-1 whitespace-normal break-words">{contact.name}</h4>
+                                    <div className="flex flex-col gap-1">
+                                        <a
+                                            href={`tel:${contact.phone.replace(/\s+/g, '')}`}
+                                            className="inline-flex items-center gap-1 md:gap-2 text-slate-400 hover:text-white transition-colors text-[10px] md:text-sm whitespace-nowrap"
+                                        >
+                                            <Phone size={12} className="md:w-3.5 md:h-3.5" /> {contact.phone}
+                                        </a>
+                                        {contact.email && (
+                                            <a
+                                                href={`mailto:${contact.email}`}
+                                                className="inline-flex items-center gap-1 md:gap-2 text-slate-400 hover:text-white transition-colors text-[10px] md:text-sm break-all"
+                                            >
+                                                <Mail size={12} className="md:w-3.5 md:h-3.5" /> {contact.email}
+                                            </a>
+                                        )}
+                                    </div>
                                 </div>
                             </motion.div>
                         ))}
