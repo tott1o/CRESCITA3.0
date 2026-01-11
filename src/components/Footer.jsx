@@ -1,5 +1,5 @@
 import React from 'react';
-import { Facebook, Instagram, Linkedin, Twitter, Heart } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Twitter, Heart, Youtube } from 'lucide-react';
 
 const Footer = () => {
     return (
@@ -12,8 +12,14 @@ const Footer = () => {
                             Empowering the next generation of innovators through technical excellence and creative competition.
                         </p>
                         <div className="flex gap-4">
-                            {[Instagram, Twitter, Linkedin, Facebook].map((Icon, i) => (
-                                <a key={i} href="#" className="p-2 bg-white/5 rounded-full hover:bg-blue-600 transition-colors">
+                            {[
+                                { Icon: Instagram, url: "https://instagram.com/ieeesblbscek" },
+                                { Icon: Youtube, url: "https://www.youtube.com/@ieeesblbscek6815" },
+                                { Icon: Linkedin, url: "https://www.linkedin.com/company/ieeesblbscek" },
+                                { Icon: Facebook, url: "https://www.facebook.com/share/16kNwZsCEQ/" }
+
+                            ].map(({ Icon, url }, i) => (
+                                <a key={i} href={url} className="p-2 bg-white/5 rounded-full hover:bg-blue-600 transition-colors">
                                     <Icon size={20} />
                                 </a>
                             ))}

@@ -17,7 +17,7 @@ const LegacyGallery = () => {
     const [activeTab, setActiveTab] = useState('2.0');
 
     return (
-        <section className="py-16 md:py-24 bg-slate-950 relative overflow-hidden">
+        <section id="LegacyGallery" className="py-16 md:py-24 bg-slate-950 relative overflow-hidden">
             {/* Background elements */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-[128px]" />
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-600/10 rounded-full blur-[128px]" />
