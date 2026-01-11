@@ -53,7 +53,7 @@ const Hero = () => {
                     className="mt-6 md:mt-8 w-full max-w-4xl mx-auto"
                 >
                     <p className="text-[10px] md:text-sm font-medium text-slate-500 uppercase tracking-widest mb-3 md:mb-4">The countdown to innovation begins</p>
-                    <CountdownTimer targetDate="2026-02-15T09:00:00" />
+                    <CountdownTimer targetDate="2026-02-06T00:00:00" />
                 </motion.div>
 
                 <motion.div
@@ -79,7 +79,7 @@ const Hero = () => {
                 >
                     <div className="flex items-center gap-2">
                         <Calendar size={18} className="text-blue-500" />
-                        <span>fabruary 15-17, 2026</span>
+                        <span> 06,07,08 February 2026</span>
                     </div>
                     <div className="flex items-center gap-2">
                         <MapPin size={18} className="text-purple-500" />
