@@ -14,7 +14,7 @@ const Contact = () => {
         {
             role: "Secretary ",
             name: "Archana Das A ",
-            phone: "+91 9061076939",
+            phone: "+91 90610 76939",
             email: "archanadas2102@gmail.com",
             color: "purple"
         },
