@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Bell, ArrowRight, Zap } from 'lucide-react';
+import { X, ArrowRight } from 'lucide-react';
+import posterImage from '../assets/poster-realeses/WhatsApp Image 2026-01-11 at 12.52.13 PM.jpeg';
 
 const EarlyBirdPopup = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -52,66 +53,63 @@ const EarlyBirdPopup = () => {
                         className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"
                     />
 
-                    {/* Modal */}
+                    {/* Modal - Image Centric: sized by image, not viewport */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                        className="relative w-full max-w-lg bg-slate-900 border border-white/10 rounded-3xl overflow-hidden shadow-2xl"
+                        className="relative bg-slate-900 border border-white/10 rounded-3xl overflow-hidden shadow-2xl max-h-[90vh] overflow-y-auto"
+                        style={{ width: 'auto' }}
                     >
-                        {/* Gradient Accent */}
-                        <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" />
-
                         {/* Close Button */}
                         <button
                             onClick={handleDismiss}
-                            className="absolute top-4 right-4 p-2 text-slate-400 hover:text-white transition-colors"
+                            className="absolute top-4 right-4 z-20 p-2 bg-slate-900/80 backdrop-blur-sm rounded-full text-white hover:bg-slate-800 transition-colors"
+                            aria-label="Close"
                         >
                             <X size={20} />
                         </button>
 
-                        <div className="p-8 md:p-10">
-                            <div className="flex items-center gap-3 mb-6">
-                                <div className="p-2 bg-blue-500/10 rounded-lg">
-                                    <Zap size={24} className="text-blue-400 animate-pulse" />
-                                </div>
-                                <span className="text-blue-400 text-xs font-bold uppercase tracking-widest">
-                                    Limited Time Offer
-                                </span>
-                            </div>
+                        {/* Image Section - Dominant Visual, drives the modal width */}
+                        <div className="relative">
+                            <img
+                                src={posterImage}
+                                alt="Early Bird Registration"
+                                className="block max-h-[65vh] w-auto h-auto object-contain"
+                                style={{ maxWidth: 'min(90vw, 600px)' }}
+                            />
+                            {/* Subtle overlay for text readability if needed */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent pointer-events-none" />
+                        </div>
 
-                            <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
-                                EARLY BIRD <br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
-                                    REGISTRATION
-                                </span> IS OPEN
+                        {/* Content Section - Minimal Text */}
+                        <div className="p-5 bg-slate-900">
+                            {/* Headline */}
+                            <h2 className="text-xl md:text-2xl font-bold mb-1.5 text-white text-center">
+                                Early Bird Registrations Open
                             </h2>
 
-                            <p className="text-slate-400 text-lg mb-8 leading-relaxed">
-                                Secure your spot at Crescita 3.0 today and enjoy exclusive early access benefits and discounted registration fees.
+                            {/* Supporting Line - Optional Urgency */}
+                            <p className="text-slate-400 text-sm text-center mb-4">
+                                Limited seats available
                             </p>
 
-                            <div className="flex flex-col sm:flex-row gap-4">
+                            {/* CTA Button */}
+                            <div className="flex flex-col gap-2 items-center">
                                 <button
                                     onClick={handleRegister}
-                                    className="flex-1 bg-white text-slate-950 px-8 py-4 rounded-full font-bold hover:bg-blue-50 transition-all flex items-center justify-center gap-2 group shadow-lg shadow-white/5"
+                                    className="group px-6 py-3 bg-white text-slate-950 rounded-lg font-bold text-base hover:bg-blue-50 transition-all flex items-center justify-center gap-2"
                                 >
                                     Register Now
-                                    <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                                 </button>
                                 <button
                                     onClick={handleDismiss}
-                                    className="px-8 py-4 text-slate-400 font-medium hover:text-white transition-colors"
+                                    className="text-slate-400 text-sm font-medium hover:text-white transition-colors"
                                 >
-                                    Maybe later
+                                    Not now
                                 </button>
                             </div>
-                        </div>
-
-                        {/* Footer Info */}
-                        <div className="px-8 md:px-10 py-4 bg-white/5 border-t border-white/5 flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                            <span className="text-xs text-slate-500 font-medium">Slots are filling up fast — act now</span>
                         </div>
                     </motion.div>
                 </div>
