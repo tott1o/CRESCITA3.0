@@ -64,7 +64,7 @@ const EarlyBirdPopup = () => {
                         {/* Close Button */}
                         <button
                             onClick={handleDismiss}
-                            className="absolute top-4 right-4 z-20 p-2 bg-slate-900/80 backdrop-blur-sm rounded-full text-white hover:bg-slate-800 transition-colors"
+                            className="absolute top-4 right-4 z-20 p-2 bg-slate-900/40 backdrop-blur-sm rounded-full text-white/70 hover:text-white hover:bg-slate-800 transition-all opacity-80 hover:opacity-100"
                             aria-label="Close"
                         >
                             <X size={20} />
@@ -79,7 +79,7 @@ const EarlyBirdPopup = () => {
                                 style={{ maxWidth: 'min(90vw, 600px)' }}
                             />
                             {/* Subtle overlay for text readability if needed */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent pointer-events-none" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 via-transparent to-transparent pointer-events-none" />
                         </div>
 
                         {/* Content Section - Minimal Text */}
@@ -95,7 +95,7 @@ const EarlyBirdPopup = () => {
                             </p>
 
                             {/* CTA Button */}
-                            <div className="flex flex-col gap-2 items-center">
+                            <div className="flex flex-col gap-3 items-center">
                                 <button
                                     onClick={handleRegister}
                                     className="group px-6 py-3 bg-white text-slate-950 rounded-lg font-bold text-base hover:bg-blue-50 transition-all flex items-center justify-center gap-2"
