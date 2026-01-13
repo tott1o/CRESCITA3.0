@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowRight } from 'lucide-react';
-import posterImage from '../assets/poster-realeses/WhatsApp Image 2026-01-11 at 12.52.13 PM.jpeg';
+import posterImage from '../assets/poster-realeses/3.jpeg';
 
 const EarlyBirdPopup = () => {
     const [isVisible, setIsVisible] = useState(false);

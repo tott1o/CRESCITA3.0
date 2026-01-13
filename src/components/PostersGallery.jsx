@@ -1,16 +1,59 @@
-import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowLeft, ExternalLink } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowLeft, ExternalLink, X, Calendar, Tag, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 // Eagerly import all images from the posters folder
 const rawPosters = import.meta.glob('../assets/poster-realeses/*.{jpeg,jpg,png,webp}', { eager: true });
 
+// Manual configuration for poster details and links
+const POSTER_CONFIG = {
+    "1": {
+        title: "Call for Volunteers",
+        category: "Announcement",
+        link: "https://forms.gle/volunteer-link",
+        linkText: "Apply Now"
+    },
+    "3": {
+        title: "Early Bird Registration",
+        category: "Registration",
+        link: "https://konfhub.com/crescita-2026",
+        linkText: "Register Now"
+    },
+    "2": {
+        title: "Event Date Announced",
+        category: "Announcement"
+    },
+    "4": {
+        title: "Call for Publicity Volunteers",
+        category: "Announcement",
+        link: "https://konfhub.com/crescita-2026",
+        linkText: "Register Now"
+    },
+    "5": {
+        title: "AI tools: everyone must know",
+        category: "pre-event",
+        link: "https://konfhub.com/crescita-2026",
+        linkText: "Register Now"
+    }
+};
+
 const PostersGallery = () => {
+    const [selectedPoster, setSelectedPoster] = useState(null);
+
     // Scroll to top on mount
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
+
+    // Disable scroll when modal is open
+    useEffect(() => {
+        if (selectedPoster) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+    }, [selectedPoster]);
 
     const allPosters = Object.entries(rawPosters)
         .map(([path, module]) => ({
@@ -18,23 +61,65 @@ const PostersGallery = () => {
             image: module.default,
             filename: path.split('/').pop()
         }))
-        .sort((a, b) => b.filename.localeCompare(a.filename))
+        .sort((a, b) => a.filename.localeCompare(b.filename, undefined, { numeric: true }))
         .map((poster) => {
-            let title = "Visual Announcement";
-            let category = "Announcement";
-
-            if (poster.filename.includes("2026-01-06")) title = "Call for Volunteers";
-            else if (poster.filename.includes("2026-01-09")) title = "EventDate Announced";
-            else if (poster.filename.includes("2026-01-11")) title = "Early Bird", category = "Registration";
-            else if (poster.filename.includes("2026-01-13")) title = "Latest Update";
+            // Find metadata based on numeric filename
+            const idMatch = poster.filename.match(/^(\d+)/);
+            const id = idMatch ? idMatch[1] : null;
+            const config = POSTER_CONFIG[id] || {};
 
             return {
-                id: poster.id,
-                title,
-                image: poster.image,
-                category
+                ...poster,
+                title: config.title || "Visual Announcement",
+                category: config.category || "Announcement",
+                link: config.link || null,
+                linkText: config.linkText || "Learn More"
             };
         });
+
+    // Animation Variants
+    const backdropVariants = {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1 },
+    };
+
+    const modalVariants = {
+        hidden: {
+            opacity: 0,
+            scale: 0.8,
+            y: 40,
+            filter: 'blur(10px)'
+        },
+        visible: {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            filter: 'blur(0px)',
+            transition: {
+                type: 'spring',
+                damping: 25,
+                stiffness: 300,
+                staggerChildren: 0.1,
+                delayChildren: 0.2
+            }
+        },
+        exit: {
+            opacity: 0,
+            scale: 0.9,
+            y: 20,
+            filter: 'blur(10px)',
+            transition: { duration: 0.2 }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 15 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { type: 'spring', damping: 20, stiffness: 200 }
+        }
+    };
 
     return (
         <section className="min-h-screen py-12 md:py-24 bg-slate-950 relative overflow-hidden text-center pt-24 md:pt-32">
@@ -71,7 +156,8 @@ const PostersGallery = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: (index % 6) * 0.1 }}
-                            className="group relative"
+                            className="group relative cursor-pointer"
+                            onClick={() => setSelectedPoster(poster)}
                         >
                             <div className="relative aspect-[3/4] overflow-hidden rounded-lg md:rounded-2xl bg-slate-900 border border-white/5 ring-1 ring-white/10 group-hover:ring-blue-500/50 transition-all duration-500">
                                 <img
@@ -85,7 +171,7 @@ const PostersGallery = () => {
 
                                 {/* Content on Hover - Icon only */}
                                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                                    <div className="p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 transform scale-90 group-hover:scale-100 transition-transform">
+                                    <div className="p-3 rounded-full bg-blue-600 shadow-lg shadow-blue-500/20 backdrop-blur-md border border-white/20 transform scale-90 group-hover:scale-100 transition-transform">
                                         <ExternalLink size={20} className="text-white" />
                                     </div>
                                 </div>
@@ -93,6 +179,104 @@ const PostersGallery = () => {
                         </motion.div>
                     ))}
                 </div>
+
+                {/* Modal */}
+                <AnimatePresence>
+                    {selectedPoster && (
+                        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6">
+                            {/* Backdrop */}
+                            <motion.div
+                                variants={backdropVariants}
+                                initial="hidden"
+                                animate="visible"
+                                exit="hidden"
+                                onClick={() => setSelectedPoster(null)}
+                                className="absolute inset-0 bg-slate-950/80 backdrop-blur-md"
+                            />
+
+                            {/* Modal - Image Centric */}
+                            <motion.div
+                                variants={modalVariants}
+                                initial="hidden"
+                                animate="visible"
+                                exit="exit"
+                                className="relative bg-slate-900 border border-white/10 rounded-3xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] max-h-[90vh] flex flex-col items-center"
+                                style={{ width: 'min-content' }}
+                            >
+                                {/* Close Button */}
+                                <button
+                                    onClick={() => setSelectedPoster(null)}
+                                    className="absolute top-3 right-3 z-20 p-2 bg-slate-900/60 backdrop-blur-md rounded-full text-white/70 hover:text-white hover:bg-slate-800 transition-all active:scale-90"
+                                    aria-label="Close"
+                                >
+                                    <X size={18} />
+                                </button>
+
+                                {/* Image Section */}
+                                <motion.div variants={itemVariants} className="relative w-full">
+                                    <img
+                                        src={selectedPoster.image}
+                                        alt={selectedPoster.title}
+                                        className="block object-contain"
+                                        style={{
+                                            maxHeight: 'min(55vh, 500px)',
+                                            maxWidth: 'min(85vw, 500px)',
+                                            width: 'auto',
+                                            height: 'auto'
+                                        }}
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent pointer-events-none" />
+                                </motion.div>
+
+                                {/* Content Section */}
+                                <div className="p-6 md:p-8 bg-slate-900 w-full flex flex-col items-center min-w-[300px]">
+                                    <motion.div variants={itemVariants} className="mb-2">
+                                        <span className="px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-[10px] font-bold uppercase tracking-wider border border-blue-500/20">
+                                            {selectedPoster.category}
+                                        </span>
+                                    </motion.div>
+
+                                    <motion.h2
+                                        variants={itemVariants}
+                                        className="text-2xl md:text-3xl font-bold mb-4 text-white text-center tracking-tight leading-tight"
+                                    >
+                                        {selectedPoster.title}
+                                    </motion.h2>
+
+                                    <motion.div variants={itemVariants} className="flex flex-col gap-4 w-full items-center">
+                                        {selectedPoster.link ? (
+                                            <a
+                                                href={selectedPoster.link}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="group w-full max-w-[240px] px-8 py-3.5 bg-white text-slate-950 rounded-xl font-bold text-base hover:bg-blue-50 hover:shadow-lg hover:shadow-blue-500/10 active:scale-95 transition-all flex items-center justify-center gap-2"
+                                            >
+                                                {selectedPoster.linkText}
+                                                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                                            </a>
+                                        ) : (
+                                            <button
+                                                onClick={() => setSelectedPoster(null)}
+                                                className="group w-full max-w-[240px] px-8 py-3.5 bg-white/5 text-white border border-white/10 rounded-xl font-bold text-base hover:bg-white/10 active:scale-95 transition-all"
+                                            >
+                                                Back to Gallery
+                                            </button>
+                                        )}
+
+                                        {selectedPoster.link && (
+                                            <button
+                                                onClick={() => setSelectedPoster(null)}
+                                                className="text-slate-500 text-sm font-medium hover:text-white transition-colors py-1"
+                                            >
+                                                Close
+                                            </button>
+                                        )}
+                                    </motion.div>
+                                </div>
+                            </motion.div>
+                        </div>
+                    )}
+                </AnimatePresence>
             </div>
         </section>
     );
