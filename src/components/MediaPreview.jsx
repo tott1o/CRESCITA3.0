@@ -16,24 +16,7 @@ const MediaPreview = () => {
         }))
         .sort((a, b) => b.filename.localeCompare(a.filename))
         .slice(0, 6) // Limit to latest 6 previews
-        .map((poster, index) => {
-            // Apply known titles based on filename keywords/dates
-            let title = "Visual Announcement";
-            let category = "Announcement";
 
-            // Mapping for existing posters
-            if (poster.filename.includes("2026-01-06")) title = "Call for Volunteers";
-            else if (poster.filename.includes("2026-01-09")) title = "EventDate Announced";
-            else if (poster.filename.includes("2026-01-11")) title = "Early Bird", category = "Registration";
-            else if (poster.filename.includes("2026-01-13")) title = "Latest Update";
-
-            return {
-                id: poster.id,
-                title,
-                image: poster.image,
-                category
-            };
-        });
 
     return (
         <section id="media-preview" className="py-12 md:py-24 bg-slate-950 relative overflow-hidden text-center">
@@ -66,23 +49,25 @@ const MediaPreview = () => {
                             transition={{ delay: index * 0.1 }}
                             className="group relative"
                         >
-                            <div className="relative aspect-[3/4] overflow-hidden rounded-lg md:rounded-2xl bg-slate-900 border border-white/5 ring-1 ring-white/10 group-hover:ring-blue-500/50 transition-all duration-500">
-                                <img
-                                    src={poster.image}
-                                    alt={poster.title}
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                />
+                            <Link to="/posters" className="block cursor-pointer">
+                                <div className="relative aspect-[3/4] overflow-hidden rounded-lg md:rounded-2xl bg-slate-900 border border-white/5 ring-1 ring-white/10 group-hover:ring-blue-500/50 transition-all duration-500">
+                                    <img
+                                        src={poster.image}
+                                        alt="Event Announcement"
+                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                    />
 
-                                {/* Overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-0 group-hover:opacity-60 transition-opacity" />
+                                    {/* Overlay */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-0 group-hover:opacity-60 transition-opacity" />
 
-                                {/* Content on Hover - Icon only */}
-                                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                                    <div className="p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 transform scale-90 group-hover:scale-100 transition-transform">
-                                        <ExternalLink size={20} className="text-white" />
+                                    {/* Content on Hover - Icon only */}
+                                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                                        <div className="p-3 rounded-full bg-blue-600 shadow-lg shadow-blue-500/20 backdrop-blur-md border border-white/20 transform scale-90 group-hover:scale-100 transition-transform">
+                                            <ExternalLink size={20} className="text-white" />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </Link>
                         </motion.div>
                     ))}
                 </div>
