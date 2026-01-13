@@ -9,18 +9,30 @@ import MediaPreview from './components/MediaPreview';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
+import { Routes, Route } from 'react-router-dom';
+import PostersGallery from './components/PostersGallery';
+
+const Home = () => (
+  <>
+    <Hero />
+    <About />
+    <MediaPreview />
+    <EventsPreview />
+    <LegacyGallery />
+    <Contact />
+  </>
+);
+
 function App() {
   return (
     <div className="min-h-screen bg-slate-950 text-white font-sans selection:bg-blue-500/30">
       <Navbar />
       <EarlyBirdPopup />
       <main>
-        <Hero />
-        <About />
-        <MediaPreview />
-        <EventsPreview />
-        <LegacyGallery />
-        <Contact />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/posters" element={<PostersGallery />} />
+        </Routes>
       </main>
       <Footer />
     </div>

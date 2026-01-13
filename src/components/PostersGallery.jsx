@@ -1,27 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 // Eagerly import all images from the posters folder
 const rawPosters = import.meta.glob('../assets/poster-realeses/*.{jpeg,jpg,png,webp}', { eager: true });
 
-const MediaPreview = () => {
-    // Transform glob result and sort by filename (descending for latest first)
-    const featuredPosters = Object.entries(rawPosters)
+const PostersGallery = () => {
+    // Scroll to top on mount
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    const allPosters = Object.entries(rawPosters)
         .map(([path, module]) => ({
             id: path,
             image: module.default,
             filename: path.split('/').pop()
         }))
         .sort((a, b) => b.filename.localeCompare(a.filename))
-        .slice(0, 6) // Limit to latest 6 previews
-        .map((poster, index) => {
-            // Apply known titles based on filename keywords/dates
+        .map((poster) => {
             let title = "Visual Announcement";
             let category = "Announcement";
 
-            // Mapping for existing posters
             if (poster.filename.includes("2026-01-06")) title = "Call for Volunteers";
             else if (poster.filename.includes("2026-01-09")) title = "EventDate Announced";
             else if (poster.filename.includes("2026-01-11")) title = "Early Bird", category = "Registration";
@@ -36,7 +37,7 @@ const MediaPreview = () => {
         });
 
     return (
-        <section id="media-preview" className="py-12 md:py-24 bg-slate-950 relative overflow-hidden text-center">
+        <section className="min-h-screen py-12 md:py-24 bg-slate-950 relative overflow-hidden text-center pt-24 md:pt-32">
             {/* Background Accents */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/5 blur-[120px] -z-10" />
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-600/5 blur-[120px] -z-10" />
@@ -44,26 +45,32 @@ const MediaPreview = () => {
             <div className="max-w-7xl mx-auto px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    animate={{ opacity: 1, y: 0 }}
                     className="mb-10 md:mb-16"
                 >
-                    <h2 className="text-2xl md:text-5xl font-bold tracking-tight uppercase">
-                        Visual <span className="text-blue-500">Announcements</span>
+                    <Link
+                        to="/"
+                        className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors mb-8 group"
+                    >
+                        <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+                        Back to Home
+                    </Link>
+                    <h2 className="text-3xl md:text-6xl font-bold tracking-tight uppercase">
+                        Full <span className="text-blue-500">Gallery</span>
                     </h2>
                     <p className="mt-4 text-slate-400 text-base md:text-lg max-w-2xl mx-auto">
-                        Stay updated with our latest event posters and announcements. Explore the highlights and key information at a glance.
+                        Explore our complete collection of event posters and visual announcements.
                     </p>
                 </motion.div>
 
                 <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8">
-                    {featuredPosters.map((poster, index) => (
+                    {allPosters.map((poster, index) => (
                         <motion.div
                             key={poster.id}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
+                            transition={{ delay: (index % 6) * 0.1 }}
                             className="group relative"
                         >
                             <div className="relative aspect-[3/4] overflow-hidden rounded-lg md:rounded-2xl bg-slate-900 border border-white/5 ring-1 ring-white/10 group-hover:ring-blue-500/50 transition-all duration-500">
@@ -86,19 +93,9 @@ const MediaPreview = () => {
                         </motion.div>
                     ))}
                 </div>
-
-                <div className="mt-12 flex justify-center">
-                    <Link
-                        to="/posters"
-                        className="w-full sm:w-auto group px-6 py-3 md:px-8 md:py-4 bg-white text-slate-950 rounded-lg font-bold text-base md:text-lg hover:bg-blue-50 transition-all flex items-center justify-center gap-2"
-                    >
-                        View Full Gallery
-                        <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                </div>
             </div>
         </section>
     );
 };
 
-export default MediaPreview;
+export default PostersGallery;
