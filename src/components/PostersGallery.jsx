@@ -11,13 +11,13 @@ const POSTER_CONFIG = {
     "1": {
         title: "Call for Volunteers",
         category: "Announcement",
-        link: "https://forms.gle/volunteer-link",
+        link: "https://forms.gle/LAWhizB5BKzR3LyG6",
         linkText: "Apply Now"
     },
     "3": {
         title: "Early Bird Registration",
         category: "Registration",
-        link: "https://konfhub.com/crescita-2026",
+        link: "https://bit.ly/CRESCITAEarlyBird",
         linkText: "Register Now"
     },
     "2": {
@@ -27,13 +27,13 @@ const POSTER_CONFIG = {
     "4": {
         title: "Call for Publicity Volunteers",
         category: "Announcement",
-        link: "https://konfhub.com/crescita-2026",
+        link: "https://forms.gle/6tAhxRLw9xSYroX57",
         linkText: "Register Now"
     },
     "5": {
         title: "AI tools: everyone must know",
         category: "pre-event",
-        link: "https://konfhub.com/crescita-2026",
+        link: "https://forms.gle/Qws5atHi3hNyrDSdA",
         linkText: "Register Now"
     }
 };
