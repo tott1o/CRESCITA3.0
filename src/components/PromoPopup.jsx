@@ -107,17 +107,14 @@ const PromoPopup = () => {
 
                         {/* Video Container (9:16 Aspect Ratio) */}
                         <div className="relative aspect-[9/16] w-full bg-black overflow-hidden flex items-center justify-center">
-                            <video
-                                autoPlay
-                                muted
-                                loop
-                                playsInline
-                                onClick={(e) => {
-                                    e.currentTarget.muted = false;
-                                    e.currentTarget.play();
-                                }}
-                                className="w-full h-full object-cover"
-                            />
+                            <video  
+                            src={promoVideo}  
+                            autoPlay  
+                            muted   
+                            loop  
+                            playsInline  
+                            className="w-full h-full object-contain"  
+                        />
                             {/* Subtle Gradient Overlay */}
                             <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent pointer-events-none" />
                         </div>
