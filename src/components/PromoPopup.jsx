@@ -107,8 +107,10 @@ return (
 
                     {/* Video Container (9:16 Aspect Ratio) */}  
                     <div className="relative aspect-[9/16] w-full bg-black overflow-hidden flex items-center justify-center">  
-                        <video  
-                            src={promoVideo}   
+                                               <video  
+                            src={promoVideo}  
+                            autoPlay  
+                            muted   
                             loop  
                             playsInline  
                             className="w-full h-full object-cover"  
