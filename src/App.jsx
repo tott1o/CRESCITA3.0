@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import EarlyBirdPopup from './components/EarlyBirdPopup';
+import PromoPopup from './components/PromoPopup';
 import Hero from './components/Hero';
 import About from './components/About';
 import EventsPreview from './components/EventsPreview';
@@ -28,6 +29,7 @@ function App() {
     <div className="min-h-screen bg-slate-950 text-white font-sans selection:bg-blue-500/30">
       <Navbar />
       <EarlyBirdPopup />
+      <PromoPopup />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
