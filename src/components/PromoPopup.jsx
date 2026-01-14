@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react'; // Added useRef
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink, Volume2, VolumeX } from 'lucide-react';
+import { X, ExternalLink, Volume2, VolumeX } from 'lucide-react'; // Added icons
 import promoVideo from '../assets/video-realeses/crescita3.0-promo.mp4';
 
 const PromoPopup = () => {
     const [isVisible, setIsVisible] = useState(false);
-    const [isMuted, setIsMuted] = useState(true);
+    const [isMuted, setIsMuted] = useState(true); // State to track mute
     const videoRef = useRef(null);
 
     useEffect(() => {  
@@ -32,9 +32,7 @@ const PromoPopup = () => {
         sessionStorage.setItem('hasSeenPromo3.0', 'true');  
     };  
 
-    const toggleMute = (e) => {
-        // Prevent click from bubbling to the backdrop
-        e.stopPropagation();
+    const toggleMute = () => {
         if (videoRef.current) {
             videoRef.current.muted = !videoRef.current.muted;
             setIsMuted(videoRef.current.muted);
@@ -46,7 +44,7 @@ const PromoPopup = () => {
         handleClose();  
     };  
 
-    // ... variants (backdropVariants and modalVariants remain the same)
+    // ... (variants remain the same)
 
     return (  
         <AnimatePresence>  
@@ -64,34 +62,29 @@ const PromoPopup = () => {
                         initial="hidden" animate="visible" exit="exit"  
                         className="relative w-full max-w-[340px] bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-white/10 flex flex-col max-h-[90vh]"  
                     >  
-                        {/* Action Buttons Overlay */}
-                        <div className="absolute top-3 inset-x-3 z-50 flex justify-between items-start pointer-events-none">
-                            {/* Mute Toggle */}
-                            <button  
-                                onClick={toggleMute}  
-                                className="pointer-events-auto p-2 bg-slate-900/60 backdrop-blur-md rounded-full text-white/70 hover:text-white hover:bg-slate-800 transition-all active:scale-95 border border-white/10"  
-                                aria-label={isMuted ? "Unmute" : "Mute"}
-                            >  
-                                {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}  
-                            </button> 
+                        {/* Close Button */}
+                        <button  
+                            onClick={handleClose}  
+                            className="absolute top-3 right-3 z-50 p-2 bg-slate-900/60 backdrop-blur-md rounded-full text-white/70 hover:text-white border border-white/10"  
+                        >  
+                            <X size={18} />  
+                        </button>  
 
-                            {/* Close Icon */}
-                            <button  
-                                onClick={handleClose}  
-                                className="pointer-events-auto p-2 bg-slate-900/60 backdrop-blur-md rounded-full text-white/70 hover:text-white hover:bg-slate-800 transition-all active:scale-95 border border-white/10"  
-                                aria-label="Close"  
-                            >  
-                                <X size={18} />  
-                            </button>  
-                        </div>
+                        {/* Mute/Unmute Button */}
+                        <button  
+                            onClick={toggleMute}  
+                            className="absolute top-3 left-3 z-50 p-2 bg-slate-900/60 backdrop-blur-md rounded-full text-white/70 hover:text-white border border-white/10"  
+                        >  
+                            {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}  
+                        </button>  
 
-                        {/* Video Container (9:16 Aspect Ratio) */}  
+                        {/* Video Container */}  
                         <div className="relative aspect-[9/16] w-full bg-black overflow-hidden flex items-center justify-center">  
                             <video  
                                 ref={videoRef}
                                 src={promoVideo}  
                                 autoPlay  
-                                muted // Required for autoplay
+                                muted // Must start muted for autoplay to work
                                 loop  
                                 playsInline  
                                 className="w-full h-full object-cover"  
@@ -105,7 +98,7 @@ const PromoPopup = () => {
                                 whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(59, 130, 246, 0.4)" }}  
                                 whileTap={{ scale: 0.95 }}  
                                 onClick={handleRegister}  
-                                className="group w-full max-w-[240px] px-8 py-3.5 bg-white text-slate-950 rounded-xl font-bold text-base hover:bg-blue-50 transition-all flex items-center justify-center gap-2"  
+                                className="group w-full max-w-[240px] px-8 py-3.5 bg-white text-slate-950 rounded-xl font-bold text-base flex items-center justify-center gap-2"  
                             >  
                                 Register Now  
                                 <ExternalLink size={18} />  
