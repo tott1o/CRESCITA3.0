@@ -7,6 +7,18 @@ const PromoPopup = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
+        // Prevent body scroll when popup is visible
+        if (isVisible) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [isVisible]);
+
+    useEffect(() => {
         // Check session storage to show only once per session
         const hasSeenPromo = sessionStorage.getItem('hasSeenPromo3.0');
 
@@ -38,8 +50,8 @@ const PromoPopup = () => {
     const modalVariants = {
         hidden: {
             opacity: 0,
-            scale: 0.9,
-            y: 20,
+            scale: 0.8,
+            y: 40,
             filter: 'blur(10px)'
         },
         visible: {
@@ -55,7 +67,9 @@ const PromoPopup = () => {
         },
         exit: {
             opacity: 0,
-            scale: 0.95,
+            scale: 0.9,
+            y: 20,
+            filter: 'blur(10px)',
             transition: { duration: 0.2 }
         }
     };
@@ -63,7 +77,7 @@ const PromoPopup = () => {
     return (
         <AnimatePresence>
             {isVisible && (
-                <div className="fixed inset-0 z-[150] flex items-center justify-center p-4">
+                <div className="fixed inset-0 z-[150] flex items-center justify-center p-4 md:p-6">
                     {/* Dark Translucent Overlay */}
                     <motion.div
                         variants={backdropVariants}
@@ -71,7 +85,7 @@ const PromoPopup = () => {
                         animate="visible"
                         exit="exit"
                         onClick={handleClose}
-                        className="absolute inset-0 bg-slate-950/90 backdrop-blur-sm"
+                        className="absolute inset-0 bg-slate-950/90 backdrop-blur-md"
                     />
 
                     {/* Modal Content */}
@@ -80,19 +94,19 @@ const PromoPopup = () => {
                         initial="hidden"
                         animate="visible"
                         exit="exit"
-                        className="relative w-full max-w-[400px] bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-white/10 flex flex-col"
+                        className="relative w-full max-w-[340px] bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-white/10 flex flex-col max-h-[90vh]"
                     >
-                        {/* Close Icon */}
+                        {/* Close Icon - Adjusted to match EarlyBird style */}
                         <button
                             onClick={handleClose}
-                            className="absolute top-4 right-4 z-50 p-2 bg-black/40 hover:bg-black/60 text-white rounded-full backdrop-blur-md transition-colors border border-white/10"
+                            className="absolute top-3 right-3 z-50 p-2 bg-slate-900/60 backdrop-blur-md rounded-full text-white/70 hover:text-white hover:bg-slate-800 transition-all active:scale-95 border border-white/10"
                             aria-label="Close"
                         >
-                            <X size={20} />
+                            <X size={18} />
                         </button>
 
                         {/* Video Container (9:16 Aspect Ratio) */}
-                        <div className="relative aspect-[9/16] w-full bg-black overflow-hidden">
+                        <div className="relative aspect-[9/16] w-full bg-black overflow-hidden flex items-center justify-center">
                             <video
                                 src={promoVideo}
                                 autoPlay
@@ -102,11 +116,11 @@ const PromoPopup = () => {
                                 className="w-full h-full object-contain"
                             />
                             {/* Subtle Gradient Overlay */}
-                            <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent" />
+                            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent pointer-events-none" />
                         </div>
 
                         {/* CTA Section */}
-                        <div className="p-6 pt-2 bg-slate-900 flex flex-col items-center gap-4">
+                        <div className="p-6 md:p-7 bg-slate-900 flex flex-col items-center gap-4">
                             <motion.button
                                 whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(59, 130, 246, 0.4)" }}
                                 whileTap={{ scale: 0.95 }}
@@ -117,7 +131,7 @@ const PromoPopup = () => {
                                 <ExternalLink size={18} />
                             </motion.button>
 
-                            <p className="text-slate-500 text-xs font-medium tracking-wider uppercase">
+                            <p className="text-slate-500 text-[10px] font-bold tracking-[0.2em] uppercase">
                                 CRESCITA 3.0
                             </p>
                         </div>
