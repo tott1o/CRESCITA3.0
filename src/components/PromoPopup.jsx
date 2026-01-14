@@ -110,6 +110,7 @@ const PromoPopup = () => {
                             <video
                                 src={promoVideo}
                                 autoPlay
+                                muted 
                                 loop
                                 playsInline
                                 className="w-full h-full object-contain"
