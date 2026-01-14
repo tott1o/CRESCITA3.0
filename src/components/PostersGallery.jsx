@@ -35,6 +35,12 @@ const POSTER_CONFIG = {
         category: "pre-event",
         link: "https://forms.gle/Qws5atHi3hNyrDSdA",
         linkText: "Register Now"
+    },
+    "6": {
+        title: "Publicity Volunteers Awards",
+        category: "Announcement",
+        link: "https://forms.gle/Qws5atHi3hNyrDSdA",
+        linkText: "Register Now"
     }
 };
 
