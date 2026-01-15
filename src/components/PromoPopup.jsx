@@ -7,7 +7,7 @@ const PromoPopup = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        // Prevent body scroll when popup is visible
+        // Prevent body scroll when popup is visible  
         if (isVisible) {
             document.body.style.overflow = 'hidden';
         } else {
@@ -24,7 +24,7 @@ const PromoPopup = () => {
         const hasSeenPromo = sessionStorage.getItem('hasSeenPromo3.0');
 
         if (!hasSeenPromo) {
-            // Short delay before showing the popup for better UX
+            // Short delay before showing the popup for better UX  
             const timer = setTimeout(() => {
                 setIsVisible(true);
             }, 1000);
@@ -142,6 +142,7 @@ const PromoPopup = () => {
             )}
         </AnimatePresence>
     );
+
 };
 
 export default PromoPopup;
