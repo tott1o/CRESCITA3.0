@@ -19,6 +19,7 @@ const PromoPopup = () => {
     }, [isVisible]);
 
     useEffect(() => {
+
         // Check session storage to show only once per session
         const hasSeenPromo = sessionStorage.getItem('hasSeenPromo3.0');
 
@@ -109,9 +110,10 @@ const PromoPopup = () => {
                         <div className="relative aspect-[9/16] w-full bg-black overflow-hidden flex items-center justify-center">
                             <video
                                 src={promoVideo}
+                                loop
+                                controls
                                 autoPlay
                                 muted
-                                loop
                                 playsInline
                                 className="w-full h-full object-contain"
                             />
