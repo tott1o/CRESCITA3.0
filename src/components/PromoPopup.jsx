@@ -18,6 +18,7 @@ const PromoPopup = () => {
         };
     }, [isVisible]);
 
+
     useEffect(() => {
 
         // Check session storage to show only once per session

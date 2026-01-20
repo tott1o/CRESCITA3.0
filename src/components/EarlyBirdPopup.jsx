@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowRight } from 'lucide-react';
-import posterImage from '../assets/poster-realeses/3.jpeg';
+import poster7 from '../assets/poster-realeses/7.jpeg';
 
 const EarlyBirdPopup = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -42,13 +42,13 @@ const EarlyBirdPopup = () => {
         };
     }, [isVisible]);
 
+
     const handleDismiss = () => {
         setIsVisible(false);
         setHasBeenDismissed(true);
     };
 
     const handleRegister = () => {
-        window.open('https://bit.ly/CRESCITAEarlyBird', '_blank');
         handleDismiss();
     };
 
@@ -130,8 +130,8 @@ const EarlyBirdPopup = () => {
                         {/* Image Section */}
                         <motion.div variants={itemVariants} className="relative w-full">
                             <img
-                                src={posterImage}
-                                alt="Early Bird Registration"
+                                src={poster7}
+                                alt="Early Bird Registration Closed"
                                 className="block object-contain"
                                 style={{
                                     maxHeight: 'min(55vh, 500px)',
@@ -149,23 +149,23 @@ const EarlyBirdPopup = () => {
                                 variants={itemVariants}
                                 className="text-2xl md:text-3xl font-bold mb-2 text-white text-center tracking-tight"
                             >
-                                Early Bird is <span className="text-blue-400">Live</span>
+                                Early Bird is <span className="text-red-400">Closed</span>
                             </motion.h2>
 
                             <motion.p
                                 variants={itemVariants}
                                 className="text-slate-400 text-sm md:text-base text-center mb-6 max-w-[280px]"
                             >
-                                Secure your spot before price increases. Limited slots available!
+                                All early bird slots have been filled. Stay tuned for regular registration!
                             </motion.p>
 
                             <motion.div variants={itemVariants} className="flex flex-col gap-4 w-full items-center">
                                 <button
-                                    onClick={handleRegister}
-                                    className="group w-full max-w-[240px] px-8 py-3.5 bg-white text-slate-950 rounded-xl font-bold text-base hover:bg-blue-50 hover:shadow-lg hover:shadow-blue-500/10 active:scale-95 transition-all flex items-center justify-center gap-2"
+                                    onClick={handleDismiss}
+                                    className="group w-full max-w-[240px] px-8 py-3.5 bg-slate-800 text-white/50 rounded-xl font-bold text-base cursor-not-allowed transition-all flex items-center justify-center gap-2"
                                 >
-                                    Register Now
-                                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                                    Registration Closed
+                                    <X size={18} />
                                 </button>
                                 <button
                                     onClick={handleDismiss}
