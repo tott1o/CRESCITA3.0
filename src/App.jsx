@@ -28,7 +28,6 @@ function App() {
   return (
     <div className="min-h-screen bg-slate-950 text-white font-sans selection:bg-blue-500/30">
       <Navbar />
-      <EarlyBirdPopup />
       <PromoPopup/>
       <main>
         <Routes>
