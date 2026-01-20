@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ExternalLink } from 'lucide-react';
+import { X, ExternalLink, Volume2, VolumeX } from 'lucide-react';
 import promoVideo from '../assets/video-realeses/crescita3.0-promo.mp4';
 
 const PromoPopup = () => {
     const [isVisible, setIsVisible] = useState(false);
+    const [isMuted, setIsMuted] = useState(true);
 
     useEffect(() => {
         // Prevent body scroll when popup is visible  
@@ -108,16 +109,49 @@ const PromoPopup = () => {
                         </button>
 
                         {/* Video Container (9:16 Aspect Ratio) */}
-                        <div className="relative aspect-[9/16] w-full bg-black overflow-hidden flex items-center justify-center">
+                        <div
+                            className="relative aspect-[9/16] w-full bg-black overflow-hidden flex items-center justify-center cursor-pointer group/video"
+                            onClick={() => setIsMuted(!isMuted)}
+                        >
                             <video
                                 src={promoVideo}
                                 loop
-                                controls
                                 autoPlay
-                                muted
+                                muted={isMuted}
                                 playsInline
                                 className="w-full h-full object-cover"
                             />
+
+                            {/* Modern Mute Toggle Indicator (Reels Style) */}
+                            <div className="absolute inset-x-0 bottom-4 right-4 flex justify-end pointer-events-none">
+                                <motion.div
+                                    initial={false}
+                                    animate={{
+                                        scale: [1, 1.2, 1],
+                                        opacity: 1
+                                    }}
+                                    key={isMuted ? 'muted' : 'unmuted'}
+                                    className="p-2.5 bg-slate-950/40 backdrop-blur-md rounded-full border border-white/10 text-white/90"
+                                >
+                                    {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+                                </motion.div>
+                            </div>
+
+                            {/* Center Splash Animation on Toggle */}
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={isMuted ? 'muted-splash' : 'unmuted-splash'}
+                                    initial={{ opacity: 0, scale: 0.5 }}
+                                    animate={{ opacity: [0, 1, 0], scale: [0.5, 1.5, 2] }}
+                                    transition={{ duration: 0.6 }}
+                                    className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                                >
+                                    <div className="p-6 bg-white/10 backdrop-blur-sm rounded-full">
+                                        {isMuted ? <VolumeX size={40} className="text-white" /> : <Volume2 size={40} className="text-white" />}
+                                    </div>
+                                </motion.div>
+                            </AnimatePresence>
+
                             {/* Subtle Gradient Overlay */}
                             <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent pointer-events-none" />
                         </div>
