@@ -66,7 +66,7 @@ const Hero = () => {
                         Register Now
                         <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                     </button>
-                    <button onClick={() => document.getElementById('events')?.scrollIntoView({ behavior: 'smooth' })} className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-white/5 border border-white/10 text-white rounded-lg font-bold text-base md:text-lg hover:bg-white/10 transition-all">
+                    <button onClick={() => document.getElementById('media-preview')?.scrollIntoView({ behavior: 'smooth' })} className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-white/5 border border-white/10 text-white rounded-lg font-bold text-base md:text-lg hover:bg-white/10 transition-all">
                         Explore Events
                     </button>
                 </motion.div>
