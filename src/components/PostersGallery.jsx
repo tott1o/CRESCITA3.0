@@ -51,6 +51,12 @@ const POSTER_CONFIG = {
         category: "pre-event",
         link: "https://forms.gle/Dj5z7dgCCQc6sDG77",
         linkText: "Register Now"
+    },
+    "9": {
+        title: "Normal Registration Open",
+        category: "Registration",
+        link: "https://bit.ly/CRESICTA3registration",
+        linkText: "Register Now"
     }
 };
 
