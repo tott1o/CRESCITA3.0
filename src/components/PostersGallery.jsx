@@ -41,6 +41,16 @@ const POSTER_CONFIG = {
         category: "Announcement",
         link: "https://forms.gle/Qws5atHi3hNyrDSdA",
         linkText: "Register Now"
+    },
+    "7": {
+        title: "Early Bird Registration Closed",
+        category: "Announcement",
+    },
+    "8": {
+        title: "Introdution to UI/UX",
+        category: "pre-event",
+        link: "https://forms.gle/Dj5z7dgCCQc6sDG77",
+        linkText: "Register Now"
     }
 };
 
@@ -67,7 +77,7 @@ const PostersGallery = () => {
             image: module.default,
             filename: path.split('/').pop()
         }))
-        .sort((a, b) => a.filename.localeCompare(b.filename, undefined, { numeric: true }))
+        .sort((a, b) => b.filename.localeCompare(a.filename, undefined, { numeric: true }))
         .map((poster) => {
             // Find metadata based on numeric filename
             const idMatch = poster.filename.match(/^(\d+)/);
