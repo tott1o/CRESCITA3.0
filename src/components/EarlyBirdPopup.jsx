@@ -13,7 +13,7 @@ const EarlyBirdPopup = () => {
             if (!hasBeenDismissed) {
                 setIsVisible(true);
             }
-        }, 5000);
+        }, 8000);
 
         // Trigger 2: Exit Intent
         const handleMouseLeave = (e) => {
@@ -32,13 +32,27 @@ const EarlyBirdPopup = () => {
 
     // Prevent body scroll when popup is visible
     useEffect(() => {
+        // Use a global registry to track active popups and manage scroll lock
+        if (!window.__activePopups) window.__activePopups = new Set();
+
         if (isVisible) {
+            window.__activePopups.add('EarlyBirdPopup');
+        } else {
+            window.__activePopups.delete('EarlyBirdPopup');
+        }
+
+        // Apply scroll lock only if there are active popups
+        if (window.__activePopups.size > 0) {
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = 'unset';
         }
+
         return () => {
-            document.body.style.overflow = 'unset';
+            window.__activePopups?.delete('EarlyBirdPopup');
+            if (window.__activePopups?.size === 0) {
+                document.body.style.overflow = 'unset';
+            }
         };
     }, [isVisible]);
 

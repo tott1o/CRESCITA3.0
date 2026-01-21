@@ -8,14 +8,27 @@ const PromoPopup = () => {
     const [isMuted, setIsMuted] = useState(true);
 
     useEffect(() => {
-        // Prevent body scroll when popup is visible  
+        // Use a global registry to track active popups and manage scroll lock
+        if (!window.__activePopups) window.__activePopups = new Set();
+
         if (isVisible) {
+            window.__activePopups.add('PromoPopup');
+        } else {
+            window.__activePopups.delete('PromoPopup');
+        }
+
+        // Apply scroll lock only if there are active popups
+        if (window.__activePopups.size > 0) {
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = 'unset';
         }
+
         return () => {
-            document.body.style.overflow = 'unset';
+            window.__activePopups?.delete('PromoPopup');
+            if (window.__activePopups?.size === 0) {
+                document.body.style.overflow = 'unset';
+            }
         };
     }, [isVisible]);
 
