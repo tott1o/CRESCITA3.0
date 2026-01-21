@@ -85,7 +85,7 @@ const Navbar = () => {
                                 </a>
                             ))}
                             <div className="pt-2">
-                                <button className="w-full bg-blue-600 text-white py-3 rounded-lg font-bold" onClick={() => window.open('https://bit.ly/CRESCITAEarlyBird', '_blank')}>
+                                <button className="w-full bg-blue-600 text-white py-3 rounded-lg font-bold" onClick={() => window.open('https://bit.ly/CRESICTA3registration', '_blank')}>
                                     Register
                                 </button>
                             </div>
