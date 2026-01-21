@@ -13,7 +13,7 @@ const EarlyBirdPopup = () => {
             if (!hasBeenDismissed) {
                 setIsVisible(true);
             }
-        }, 8000);
+        }, 3000);
 
         // Trigger 2: Exit Intent
         const handleMouseLeave = (e) => {
