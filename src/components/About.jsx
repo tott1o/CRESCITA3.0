@@ -29,15 +29,15 @@ const About = () => {
 
     return (
         <section id="about" className="py-16 md:py-24 bg-slate-950 relative">
-            <div className="max-w-7xl mx-auto px-6">
+            <div className="max-w-7xl mx-auto px-4 md:px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold mb-6">About <span className="text-blue-500">Crescita 3.0</span></h2>
-                    <div className="text-slate-400 max-w-3xl mx-auto text-lg leading-relaxed space-y-4">
+                    <h2 className="text-3xl md:text-5xl font-bold mb-6">About <span className="text-blue-500">Crescita 3.0</span></h2>
+                    <div className="text-slate-400 max-w-3xl mx-auto text-base md:text-lg leading-relaxed space-y-4">
                         <p>
                             Crescita 3.0 is the flagship technical fest of IEEE SB LBSCEK, bringing together students and technology enthusiasts from across Kerala. As the largest technical event ever hosted at LBS College of Engineering, Kasaragod, it serves as a premier platform for innovation and learning.
                         </p>
@@ -55,7 +55,7 @@ const About = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="bg-white/5 border border-white/10 p-4 md:p-8 rounded-xl md:rounded-2xl hover:bg-white/10 transition-colors group flex flex-col h-full"
+                            className="bg-white/5 border border-white/10 p-3 md:p-8 rounded-xl md:rounded-2xl hover:bg-white/10 transition-colors group flex flex-col h-full"
                         >
                             <div className="mb-3 md:mb-6 p-2 md:p-4 bg-slate-900 rounded-lg md:rounded-xl inline-block w-fit group-hover:scale-110 transition-transform">
                                 {React.cloneElement(feature.icon, { size: undefined, className: `w-5 h-5 md:w-8 md:h-8 ${feature.icon.props.className}` })}

@@ -57,6 +57,10 @@ const POSTER_CONFIG = {
         category: "Registration",
         link: "https://bit.ly/CRESICTA3registration",
         linkText: "Register Now"
+    },
+    "10": {
+        title: "AI tools: everyone must know successfully completed",
+        category: "pre-event"
     }
 };
 

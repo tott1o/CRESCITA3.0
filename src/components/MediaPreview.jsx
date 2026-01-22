@@ -14,7 +14,7 @@ const MediaPreview = () => {
             image: module.default,
             filename: path.split('/').pop()
         }))
-        .sort((a, b) => b.filename.localeCompare(a.filename))
+        .sort((a, b) => b.filename.localeCompare(a.filename, undefined, { numeric: true }))
         .slice(0, 6) // Limit to latest 6 previews
 
 
