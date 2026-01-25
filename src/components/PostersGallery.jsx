@@ -61,6 +61,10 @@ const POSTER_CONFIG = {
     "10": {
         title: "AI tools: everyone must know successfully completed",
         category: "pre-event"
+    },
+    "11": {
+        title: "Introduction to UI/UX successfully completed",
+        category: "pre-event"
     }
 };
 
