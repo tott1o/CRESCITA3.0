@@ -1,11 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ArrowRight } from 'lucide-react';
+import { X, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import poster9 from '../assets/poster-realeses/9.jpeg';
+import poster12 from '../assets/poster-realeses/12.jpeg';
+
+const posters = [poster12, poster9];
 
 const NormalRegistrationPopup = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [hasBeenDismissed, setHasBeenDismissed] = useState(false);
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    // Auto-slide effect
+    useEffect(() => {
+        if (!isVisible) return;
+
+        const interval = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % posters.length);
+        }, 4000);
+
+        return () => clearInterval(interval);
+    }, [isVisible]);
+
+    const nextSlide = () => {
+        setCurrentSlide((prev) => (prev + 1) % posters.length);
+    };
+
+    const prevSlide = () => {
+        setCurrentSlide((prev) => (prev - 1 + posters.length) % posters.length);
+    };
 
     useEffect(() => {
         // Trigger 1: Time Delay (5 seconds)
@@ -141,19 +164,61 @@ const NormalRegistrationPopup = () => {
                             <X size={18} />
                         </button>
 
-                        {/* Image Section */}
-                        <motion.div variants={itemVariants} className="relative w-full">
-                            <img
-                                src={poster9}
-                                alt="Normal Registration"
-                                className="block object-contain"
-                                style={{
-                                    maxHeight: 'min(55vh, 500px)',
-                                    maxWidth: 'min(85vw, 500px)',
-                                    width: 'auto',
-                                    height: 'auto'
-                                }}
-                            />
+                        {/* Image Slider Section */}
+                        <motion.div variants={itemVariants} className="relative w-full group">
+                            {/* Slider Container */}
+                            <div className="relative overflow-hidden">
+                                <AnimatePresence mode="wait">
+                                    <motion.img
+                                        key={currentSlide}
+                                        src={posters[currentSlide]}
+                                        alt={`Registration Poster ${currentSlide + 1}`}
+                                        className="block object-contain"
+                                        style={{
+                                            maxHeight: 'min(55vh, 500px)',
+                                            maxWidth: 'min(85vw, 500px)',
+                                            width: 'auto',
+                                            height: 'auto'
+                                        }}
+                                        initial={{ opacity: 0, x: 50 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        exit={{ opacity: 0, x: -50 }}
+                                        transition={{ duration: 0.3 }}
+                                    />
+                                </AnimatePresence>
+                            </div>
+
+                            {/* Navigation Arrows */}
+                            <button
+                                onClick={prevSlide}
+                                className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 bg-slate-900/70 backdrop-blur-sm rounded-full text-white/70 hover:text-white hover:bg-slate-800 transition-all opacity-0 group-hover:opacity-100 z-10"
+                                aria-label="Previous slide"
+                            >
+                                <ChevronLeft size={20} />
+                            </button>
+                            <button
+                                onClick={nextSlide}
+                                className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 bg-slate-900/70 backdrop-blur-sm rounded-full text-white/70 hover:text-white hover:bg-slate-800 transition-all opacity-0 group-hover:opacity-100 z-10"
+                                aria-label="Next slide"
+                            >
+                                <ChevronRight size={20} />
+                            </button>
+
+                            {/* Dot Indicators */}
+                            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                                {posters.map((_, index) => (
+                                    <button
+                                        key={index}
+                                        onClick={() => setCurrentSlide(index)}
+                                        className={`w-2 h-2 rounded-full transition-all ${index === currentSlide
+                                            ? 'bg-white w-4'
+                                            : 'bg-white/40 hover:bg-white/60'
+                                            }`}
+                                        aria-label={`Go to slide ${index + 1}`}
+                                    />
+                                ))}
+                            </div>
+
                             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent pointer-events-none" />
                         </motion.div>
 
