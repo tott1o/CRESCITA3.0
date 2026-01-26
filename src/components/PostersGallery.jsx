@@ -65,6 +65,12 @@ const POSTER_CONFIG = {
     "11": {
         title: "Introduction to UI/UX successfully completed",
         category: "pre-event"
+    },
+    "12": {
+        title: "3+ CERTIFICATES : worth KTU activity points",
+        category: "Registration",
+        link: "https://bit.ly/CRESICTA3registration",
+        linkText: "Register Now"
     }
 };
 
