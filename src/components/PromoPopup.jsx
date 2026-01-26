@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ExternalLink, Volume2, VolumeX } from 'lucide-react';
-import promoVideo from '../assets/video-realeses/crescita3.0-promo.mp4';
+import promoVideo from '../assets/video-realeses/promo-3.mp4';
 
 const PromoPopup = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -53,7 +53,7 @@ const PromoPopup = () => {
     };
 
     const handleRegister = () => {
-        window.open('https://bit.ly/CRESCITAEarlyBird', '_blank');
+        window.open('https://bit.ly/CRESICTA3registration', '_blank');
         handleClose();
     };
 
