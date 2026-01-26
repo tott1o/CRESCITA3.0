@@ -4,7 +4,7 @@ import { X, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import poster9 from '../assets/poster-realeses/9.jpeg';
 import poster12 from '../assets/poster-realeses/12.jpeg';
 
-const posters = [poster12, poster9];
+const posters = [poster9, poster12];
 
 const NormalRegistrationPopup = () => {
     const [isVisible, setIsVisible] = useState(false);
