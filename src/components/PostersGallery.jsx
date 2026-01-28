@@ -71,6 +71,12 @@ const POSTER_CONFIG = {
         category: "Registration",
         link: "https://bit.ly/CRESICTA3registration",
         linkText: "Register Now"
+    },
+    "13": {
+        title: "From Campus to Career: A Roadmap to Industry & Placements",
+        category: "pre-event",
+        link: "https://forms.gle/pgfXftxSWsXd3iPp8",
+        linkText: "Register Now"
     }
 };
 

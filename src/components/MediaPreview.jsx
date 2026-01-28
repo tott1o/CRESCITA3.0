@@ -30,6 +30,18 @@ const MediaPreview = () => {
         }
     };
 
+    const handleWheel = (e) => {
+        if (scrollRef.current) {
+            // Only handle horizontal scroll if we're not scrolling vertically much
+            if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+                scrollRef.current.scrollLeft += e.deltaX;
+            } else if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+                // Map vertical scroll to horizontal
+                scrollRef.current.scrollLeft += e.deltaY;
+            }
+        }
+    };
+
     return (
         <section id="media-preview" className="py-12 md:py-24 bg-slate-950 relative overflow-hidden">
             {/* Background Accents */}
@@ -55,26 +67,46 @@ const MediaPreview = () => {
                     {/* Navigation Arrows - Desktop only */}
                     <button
                         onClick={() => scroll('left')}
-                        className="absolute -left-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-slate-900/80 border border-white/10 text-white opacity-0 group-hover:opacity-100 transition-opacity hidden md:flex items-center justify-center hover:bg-blue-600"
+                        className="absolute -left-6 top-1/2 -translate-y-1/2 z-20 p-4 rounded-full bg-slate-900/90 border border-white/10 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 hidden md:flex items-center justify-center hover:bg-blue-600 hover:scale-110 shadow-xl"
+                        aria-label="Scroll Left"
                     >
-                        <ChevronLeft size={24} />
+                        <ChevronLeft size={28} />
                     </button>
                     <button
                         onClick={() => scroll('right')}
-                        className="absolute -right-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-slate-900/80 border border-white/10 text-white opacity-0 group-hover:opacity-100 transition-opacity hidden md:flex items-center justify-center hover:bg-blue-600"
+                        className="absolute -right-6 top-1/2 -translate-y-1/2 z-20 p-4 rounded-full bg-slate-900/90 border border-white/10 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 hidden md:flex items-center justify-center hover:bg-blue-600 hover:scale-110 shadow-xl"
+                        aria-label="Scroll Right"
                     >
-                        <ChevronRight size={24} />
+                        <ChevronRight size={28} />
                     </button>
 
                     {/* Horizontal Scroll Container */}
                     <div
                         ref={scrollRef}
-                        className="flex gap-4 md:gap-8 overflow-x-auto pb-8 snap-x snap-mandatory no-scrollbar"
-                        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                        onWheel={handleWheel}
+                        className="flex gap-4 md:gap-8 overflow-x-auto pb-10 snap-x snap-mandatory scroll-smooth custom-scrollbar"
                     >
                         <style>{`
-                            .no-scrollbar::-webkit-scrollbar {
-                                display: none;
+                            .custom-scrollbar::-webkit-scrollbar {
+                                height: 6px;
+                            }
+                            .custom-scrollbar::-webkit-scrollbar-track {
+                                background: rgba(255, 255, 255, 0.05);
+                                border-radius: 10px;
+                                margin-inline: 40px;
+                            }
+                            .custom-scrollbar::-webkit-scrollbar-thumb {
+                                background: rgba(59, 130, 246, 0.3);
+                                border-radius: 10px;
+                                transition: background 0.3s;
+                            }
+                            .custom-scrollbar:hover::-webkit-scrollbar-thumb {
+                                background: rgba(59, 130, 246, 0.6);
+                            }
+                            @media (max-width: 768px) {
+                                .custom-scrollbar::-webkit-scrollbar {
+                                    display: none;
+                                }
                             }
                         `}</style>
 
