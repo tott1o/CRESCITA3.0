@@ -3,8 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import poster9 from '../assets/poster-realeses/9.jpeg';
 import poster12 from '../assets/poster-realeses/12.jpeg';
+import poster14 from '../assets/poster-realeses/14.jpeg';
 
-const posters = [poster9, poster12];
+const posters = [poster9, poster12, poster14];
 
 const NormalRegistrationPopup = () => {
     const [isVisible, setIsVisible] = useState(false);

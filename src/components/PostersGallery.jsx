@@ -77,6 +77,12 @@ const POSTER_CONFIG = {
         category: "pre-event",
         link: "https://forms.gle/pgfXftxSWsXd3iPp8",
         linkText: "Register Now"
+    },
+    "14": {
+        title: " CRESCITA' 3.0 – Camp Fire Night ",
+        category: "event",
+        link: "https://bit.ly/CRESICTA3registration",
+        linkText: "Register Now"
     }
 };
 
