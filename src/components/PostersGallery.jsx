@@ -89,6 +89,12 @@ const POSTER_CONFIG = {
         category: "event",
         link: "https://bit.ly/CRESICTA3registration",
         linkText: "Register Now"
+    },
+    "16": {
+        title: "CYBERSECURITY: THE HACKER SIDE",
+        category: "event",
+        link: "https://bit.ly/CRESICTA3registration",
+        linkText: "Register Now"
     }
 };
 
