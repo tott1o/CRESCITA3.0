@@ -83,6 +83,12 @@ const POSTER_CONFIG = {
         category: "event",
         link: "https://bit.ly/CRESICTA3registration",
         linkText: "Register Now"
+    },
+    "15": {
+        title: " CRESCITA' 3.0 – Musical Night",
+        category: "event",
+        link: "https://bit.ly/CRESICTA3registration",
+        linkText: "Register Now"
     }
 };
 
