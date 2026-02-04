@@ -101,6 +101,12 @@ const POSTER_CONFIG = {
         category: "event",
         link: "https://bit.ly/CRESICTA3registration",
         linkText: "Register Now"
+    },
+    "18": {
+        title: " MINDBENDER: The Mentalism Experience",
+        category: "event",
+        link: "https://bit.ly/CRESICTA3registration",
+        linkText: "Register Now"
     }
 };
 
