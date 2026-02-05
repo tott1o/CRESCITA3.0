@@ -53,7 +53,7 @@ const Hero = () => {
                     className="mb-2 md:mb-4 w-full max-w-3xl mx-auto"
                 >
                     <p className="text-[9px] md:text-xs font-medium text-slate-500 uppercase tracking-[0.3em] mb-1">Countdown to Innovation</p>
-                    <CountdownTimer targetDate="2026-02-06T00:00:00" />
+                    <CountdownTimer targetDate="2026-02-06T15:00:00" />
                 </motion.div>
 
                 <motion.div
