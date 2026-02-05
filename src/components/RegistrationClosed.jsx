@@ -6,9 +6,10 @@ import poster12 from '../assets/poster-realeses/12.jpeg';
 import poster14 from '../assets/poster-realeses/14.jpeg';
 import poster15 from '../assets/poster-realeses/15.jpg';
 import poster17 from '../assets/poster-realeses/17.jpg';
+import poster19 from '../assets/poster-realeses/19.jpg';
 
 
-const posters = [poster12, poster14, poster15, poster17];
+const posters = [poster19, poster12, poster14, poster15, poster17];
 
 const RegistrationClosed = () => {
     const [isVisible, setIsVisible] = useState(false);
