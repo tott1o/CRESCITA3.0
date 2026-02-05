@@ -171,7 +171,9 @@ const PromoPopup = () => {
 
                         {/* CTA Section */}
                         <div className="p-6 md:p-7 bg-slate-900 flex flex-col items-center gap-4">
-                            <motion.button
+
+
+                            {/* <motion.button
                                 whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(59, 130, 246, 0.4)" }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={handleRegister}
@@ -179,7 +181,14 @@ const PromoPopup = () => {
                             >
                                 Register Now
                                 <ExternalLink size={18} />
-                            </motion.button>
+                            </motion.button> */}
+
+                            <button
+                                disabled
+                                className="w-full max-w-[240px] px-8 py-3.5 bg-slate-800/50 text-slate-500 rounded-xl font-bold text-base border border-white/10 cursor-not-allowed flex items-center justify-center"
+                            >
+                                Registration Closed
+                            </button>
 
                             <p className="text-slate-500 text-[10px] font-bold tracking-[0.2em] uppercase">
                                 CRESCITA 3.0

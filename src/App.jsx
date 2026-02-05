@@ -1,6 +1,5 @@
 import React from 'react';
 import Navbar from './components/Navbar';
-import NormalRegistrationPopup from './components/NormalResgistrationPopup';
 import PromoPopup from './components/PromoPopup';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -12,6 +11,7 @@ import Footer from './components/Footer';
 
 import { Routes, Route } from 'react-router-dom';
 import PostersGallery from './components/PostersGallery';
+import RegistrationClosed from './components/RegistrationClosed';
 
 const Home = () => (
   <>
@@ -29,7 +29,7 @@ function App() {
     <div className="min-h-screen bg-slate-950 text-white font-sans selection:bg-blue-500/30">
       <Navbar />
       <PromoPopup />
-      <NormalRegistrationPopup />
+      <RegistrationClosed />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />

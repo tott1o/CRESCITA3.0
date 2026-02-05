@@ -62,10 +62,18 @@ const Hero = () => {
                     transition={{ duration: 0.6, delay: 0.4 }}
                     className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 w-full max-w-md px-6"
                 >
-                    <button onClick={() => window.open('https://bit.ly/CRESICTA3registration', '_blank')} className="w-full sm:w-auto group px-6 py-3 md:px-7 md:py-3.5 bg-white text-slate-950 rounded-lg font-bold text-sm md:text-base hover:bg-blue-50 transition-all flex items-center justify-center gap-2 shadow-lg shadow-white/5">
+
+
+                    {/* <button onClick={() => window.open('https://bit.ly/CRESICTA3registration', '_blank')} className="w-full sm:w-auto group px-6 py-3 md:px-7 md:py-3.5 bg-white text-slate-950 rounded-lg font-bold text-sm md:text-base hover:bg-blue-50 transition-all flex items-center justify-center gap-2 shadow-lg shadow-white/5">
                         Register Now
                         <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                    </button> */}
+
+
+                    <button disabled className="w-full sm:w-auto px-6 py-3 md:px-7 md:py-3.5 bg-slate-800 text-slate-400 rounded-lg font-bold text-sm md:text-base cursor-not-allowed flex items-center justify-center gap-2 border border-white/10 opacity-75">
+                        Registration Closed
                     </button>
+
                     <button onClick={() => document.getElementById('media-preview')?.scrollIntoView({ behavior: 'smooth' })} className="w-full sm:w-auto px-6 py-3 md:px-7 md:py-3.5 bg-white/5 border border-white/10 text-white rounded-lg font-bold text-sm md:text-base hover:bg-white/10 transition-all">
                         Explore Events
                     </button>
